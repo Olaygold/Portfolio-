@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Israel Olayinka — Developer, Editor &amp; Content Creator</title>
+<meta name="description" content="Israel Olayinka — Developer, Video Editor, Content Creator, YouTube Automation Specialist and Designer." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090d;
+    --bg-soft:#0c1016;
+    --panel:#10151d;
+    --line:rgba(255,255,255,.08);
+    --txt:#eef2f7;
+    --muted:#8b97a8;
+    --accent:#c6ff3d;
+    --accent-2:#4ad9ff;
+    --grad:linear-gradient(120deg,#c6ff3d,#4ad9ff 60%,#a47bff);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--txt);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    font-weight:400;line-height:1.65;overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:#07090d}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,h4,.display{font-family:'Syne',sans-serif;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+
+  /* ---------- ambient background ---------- */
+  .glow{position:fixed;border-radius:50%;filter:blur(120px);opacity:.35;pointer-events:none;z-index:0}
+  .glow.a{width:520px;height:520px;background:#c6ff3d33;top:-160px;left:-120px}
+  .glow.b{width:460px;height:460px;background:#4ad9ff2e;top:38%;right:-160px}
+  .glow.c{width:420px;height:420px;background:#a47bff2b;bottom:-180px;left:30%}
+  .grid-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(circle at 50% 0%,#000 30%,transparent 78%);
+    -webkit-mask-image:radial-gradient(circle at 50% 0%,#000 30%,transparent 78%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    background:rgba(7,9,13,.62);border-bottom:1px solid var(--line);
+  }
+  nav{max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+  .logo .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px var(--accent)}
+  .navlinks{display:flex;gap:30px;font-size:.9rem;color:var(--muted)}
+  .navlinks a{transition:color .2s;position:relative}
+  .navlinks a:hover{color:var(--txt)}
+  .navlinks a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--accent);transition:width .25s}
+  .navlinks a:hover::after{width:100%}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:100px;
+    font-size:.88rem;font-weight:600;border:1px solid var(--line);transition:.25s;white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn.primary{background:var(--accent);color:#07090d;border-color:transparent;box-shadow:0 8px 30px -10px var(--accent)}
+  .btn.ghost{background:rgba(255,255,255,.04)}
+  .btn.ghost:hover{border-color:rgba(198,255,61,.5);color:var(--accent)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:96px 0 80px;position:relative}
+  .badge{
+    display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:100px;
+    border:1px solid rgba(198,255,61,.28);background:rgba(198,255,61,.07);
+    font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;
+  }
+  .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(198,255,61,.6)}50%{opacity:.6;box-shadow:0 0 0 7px rgba(198,255,61,0)}}
+  .hero h1{font-size:clamp(2.7rem,7.2vw,5.6rem);margin-bottom:26px}
+  .hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p.lede{font-size:clamp(1rem,1.6vw,1.16rem);color:var(--muted);max-width:600px;margin-bottom:38px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:64px}
+  .roles{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:56px}
+  .role{
+    padding:8px 16px;border-radius:100px;border:1px solid var(--line);background:var(--panel);
+    font-size:.82rem;color:var(--muted);transition:.25s;
+  }
+  .role:hover{color:var(--accent);border-color:rgba(198,255,61,.4);transform:translateY(-2px)}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .stat{background:var(--bg-soft);padding:26px 22px}
+  .stat b{display:block;font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--accent);line-height:1}
+  .stat span{font-size:.78rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+
+  /* ---------- sections ---------- */
+  section{padding:96px 0;position:relative}
+  .sec-head{margin-bottom:52px;max-width:640px}
+  .eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent)}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:16px}
+  .sec-head p{color:var(--muted);font-size:1rem}
+
+  /* services */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:18px}
+  .card{
+    background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
+    border:1px solid var(--line);border-radius:20px;padding:30px 26px;transition:.3s;position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(198,255,61,.09),transparent 60%);opacity:0;transition:opacity .35s}
+  .card:hover::before{opacity:1}
+  .card:hover{transform:translateY(-5px);border-color:rgba(198,255,61,.3)}
+  .ico{
+    width:46px;height:46px;border-radius:13px;display:grid;place-items:center;margin-bottom:20px;
+    background:rgba(198,255,61,.1);border:1px solid rgba(198,255,61,.2);font-size:1.2rem;
+  }
+  .card h3{font-size:1.12rem;margin-bottom:10px;font-weight:700}
+  .card p{font-size:.9rem;color:var(--muted)}
+
+  /* projects */
+  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+  .proj{
+    border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--panel);
+    transition:.3s;display:flex;flex-direction:column;
+  }
+  .proj:hover{transform:translateY(-5px);border-color:rgba(74,217,255,.35)}
+  .thumb{
+    height:150px;display:grid;place-items:center;font-family:'Syne',sans-serif;font-weight:800;
+    font-size:1.5rem;letter-spacing:-.02em;position:relative;overflow:hidden;
+  }
+  .thumb span{position:relative;z-index:2;opacity:.92}
+  .t1{background:linear-gradient(135deg,#1b2a12,#2f4a16)}
+  .t2{background:linear-gradient(135deg,#10212b,#15405a)}
+  .t3{background:linear-gradient(135deg,#221631,#3b2158)}
+  .t4{background:linear-gradient(135deg,#2b1c12,#4a2f16)}
+  .t5{background:linear-gradient(135deg,#12211f,#164a41)}
+  .t6{background:linear-gradient(135deg,#241222,#4a1638)}
+  .proj-body{padding:22px;flex:1;display:flex;flex-direction:column;gap:10px}
+  .proj-body h3{font-size:1.05rem;font-weight:700}
+  .proj-body p{font-size:.86rem;color:var(--muted);flex:1}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-size:.7rem;padding:4px 10px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted);letter-spacing:.03em}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:start}
+  .about p{color:var(--muted);margin-bottom:18px;font-size:1rem}
+  .about p strong{color:var(--txt);font-weight:600}
+  .skill{margin-bottom:20px}
+  .skill-top{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:8px}
+  .skill-top b{font-weight:600}
+  .skill-top span{color:var(--muted);font-size:.8rem}
+  .bar{height:5px;border-radius:100px;background:rgba(255,255,255,.07);overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:100px;background:var(--grad);width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+
+  /* contact */
+  .contact-box{
+    border:1px solid var(--line);border-radius:26px;padding:56px 44px;text-align:center;
+    background:radial-gradient(700px circle at 50% -10%,rgba(198,255,61,.11),transparent 65%),var(--bg-soft);
+    position:relative;overflow:hidden;
+  }
+  .contact-box h2{font-size:clamp(2rem,4.6vw,3.2rem);margin-bottom:18px}
+  .contact-box p{color:var(--muted);max-width:520px;margin:0 auto 34px}
+  .contact-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:44px}
+  .contact-list{display:flex;flex-wrap:wrap;gap:32px;justify-content:center;border-top:1px solid var(--line);padding-top:32px}
+  .citem{display:flex;flex-direction:column;gap:4px;text-align:left}
+  .citem small{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .citem a,.citem span{font-size:.95rem;font-weight:600;transition:color .2s}
+  .citem a:hover{color:var(--accent)}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;font-size:.82rem;color:var(--muted)}
+  .foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:880px){
+    .navlinks{display:none}
+    .about{grid-template-columns:1fr;gap:44px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .hero{padding:64px 0 56px}
+    section{padding:70px 0}
+    .contact-box{padding:44px 22px}
+  }
+  @media(max-width:520px){
+    .contact-list{gap:22px;justify-content:flex-start}
+    .citem{text-align:left}
+  }
+</style>
+</head>
+<body>
+<div class="glow a"></div><div class="glow b"></div><div class="glow c"></div>
+<div class="grid-bg"></div>
+
+<header>
+  <nav>
+    <a href="#top" class="logo"><span class="dot"></span>Israel&nbsp;Olayinka</a>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn primary">Hire me →</a>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <section class="hero">
+      <div class="badge"><span class="pulse"></span>Available for projects</div>
+      <h1>I build, edit &amp;<br /><span class="grad">grow digital brands.</span></h1>
+      <p class="lede">
+        I'm Israel Olayinka — a developer, video editor, content creator and designer.
+        I craft fast websites, edit scroll-stopping video, and run YouTube automation
+        that turns views into real growth.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn primary">Start a project</a>
+        <a href="mailto:olayinka10172007@gmail.com" class="btn ghost">olayinka10172007@gmail.com</a>
+      </div>
+      <div class="roles">
+        <span class="role">💻 Developer</span>
+        <span class="role">🎬 Video Editor</span>
+        <span class="role">✍️ Content Creator</span>
+        <span class="role">▶️ YouTube Automation</span>
+        <span class="role">🎨 Designer</span>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><b>5+</b><span>Years creating</span></div>
+        <div class="stat"><b>30+</b><span>Projects shipped</span></div>
+        <div class="stat"><b>50+</b><span>Videos edited</span></div>
+        <div class="stat"><b>100%</b><span>Client focus</span></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="wrap">
+    <section id="services">
+      <div class="sec-head reveal">
+        <div class="eyebrow">What I do</div>
+        <h2>One creative, every piece of the puzzle.</h2>
+        <p>From the first line of code to the final cut of a video — I handle the full pipeline so your brand looks sharp everywhere.</p>
+      </div>
+      <div class="cards">
+        <div class="card reveal">
+          <div class="ico">💻</div>
+          <h3>Web Development</h3>
+          <p>Responsive landing pages, web apps and dashboards built with clean HTML, CSS, JavaScript and Python — fast, mobile-first and SEO-ready.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ico">🎬</div>
+          <h3>Video Editing</h3>
+          <p>Cinematic cuts, punchy shorts and Reels. Colour grading, sound design, captions and motion graphics that keep viewers watching.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ico">▶️</div>
+          <h3>YouTube Automation</h3>
+          <p>Faceless channels built end-to-end: niche research, scripting, AI voiceover, editing, thumbnails and upload strategy.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ico">✍️</div>
+          <h3>Content Creation</h3>
+          <p>Hooks, scripts and copy that convert. Content planning and storytelling for social platforms and brand pages.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ico">🎨</div>
+          <h3>Graphic Design</h3>
+          <p>Logos, brand kits, social templates and thumbnails — a consistent visual identity that makes you instantly recognisable.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ico">🚀</div>
+          <h3>Brand &amp; Growth</h3>
+          <p>Positioning, channel setup and optimisation that turns a scattered online presence into a system that grows on its own.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- WORK -->
+  <div class="wrap">
+    <section id="work">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Selected work</div>
+        <h2>Things I've built &amp; shipped.</h2>
+        <p>A mix of web tools, utilities and creative projects — each one solving a real problem.</p>
+      </div>
+      <div class="projects">
+        <article class="proj reveal">
+          <div class="thumb t1"><span>GROWIT</span></div>
+          <div class="proj-body">
+            <h3>Growit</h3>
+            <p>A growth-focused platform for creators and small businesses to plan, publish and track their content.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">UI/UX</span></div>
+          </div>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb t2"><span>FX·CAL</span></div>
+          <div class="proj-body">
+            <h3>FX Calculator</h3>
+            <p>A live currency conversion calculator with a clean, instant interface for traders and travellers.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">JavaScript</span><span class="tag">API</span></div>
+          </div>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb t3"><span>IA CAFÉ</span></div>
+          <div class="proj-body">
+            <h3>IA Café</h3>
+            <p>An AI-powered café experience — a conversational interface exploring how AI meets hospitality.</p>
+            <div class="tags"><span class="tag">JavaScript</span><span class="tag">AI</span></div>
+          </div>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb t4"><span>IP SCANNER</span></div>
+          <div class="proj-body">
+            <h3>IP Scanner</h3>
+            <p>A Python utility that scans and reports network IP information quickly from the command line.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Networking</span></div>
+          </div>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb t5"><span>QI COIN</span></div>
+          <div class="proj-body">
+            <h3>Qi Coin</h3>
+            <p>A crypto landing page concept built to present a token clearly and convert visitors into community members.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">Design</span></div>
+          </div>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb t6"><span>TG BOT</span></div>
+          <div class="proj-body">
+            <h3>Telegram Automation Bot</h3>
+            <p>A Python Telegram bot for automated messaging and workflow handling inside community channels.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Automation</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="wrap">
+    <section id="about">
+      <div class="about">
+        <div class="reveal">
+          <div class="eyebrow">About me</div>
+          <h2 style="font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:22px">Hey, I'm Israel 👋</h2>
+          <p>
+            I'm a <strong>self-taught developer and creative</strong> based in Nigeria. I got into
+            building things online because I wanted to control how a brand looks and feels end
+            to end — the code behind it, the video in front of it, and the design that ties it together.
+          </p>
+          <p>
+            Today I work across <strong>web development, video editing, content creation,
+            YouTube automation and design</strong>. Whether it's a landing page that needs to load
+            in under a second or a 60-second short that has to hook someone in the first three,
+            I obsess over the details that make people stay.
+          </p>
+          <p>
+            I'm easy to work with, I communicate clearly, and I deliver on time. If you have an
+            idea that needs a builder and a creative in one person — that's exactly what I do.
+          </p>
+          <div class="hero-cta" style="margin-top:32px;margin-bottom:0">
+            <a href="#contact" class="btn primary">Work with me</a>
+            <a href="tel:+2349064767251" class="btn ghost">Call 0906 476 7251</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="skill">
+            <div class="skill-top"><b>Web Development</b><span>HTML · CSS · JS · Python</span></div>
+            <div class="bar"><i data-w="92%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><b>Video Editing</b><span>Premiere · CapCut · After Effects</span></div>
+            <div class="bar"><i data-w="94%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><b>YouTube Automation</b><span>Script · VO · Edit · Thumbnail</span></div>
+            <div class="bar"><i data-w="90%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><b>Graphic Design</b><span>Figma · Photoshop · Canva</span></div>
+            <div class="bar"><i data-w="88%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><b>Content &amp; Copywriting</b><span>Hooks · Scripts · Strategy</span></div>
+            <div class="bar"><i data-w="87%"></i></div>
+          </div>
+          <div class="skill" style="margin-bottom:0">
+            <div class="skill-top"><b>Automation &amp; Bots</b><span>Python · APIs · Telegram</span></div>
+            <div class="bar"><i data-w="85%"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="wrap">
+    <section id="contact">
+      <div class="contact-box reveal">
+        <div class="eyebrow" style="justify-content:center;display:flex">Let's build something</div>
+        <h2>Got a project?<br />Let's make it real.</h2>
+        <p>Whether you need a website, an edited video, or a full YouTube channel system — send me a message and I'll get back to you fast.</p>
+        <div class="contact-cta">
+          <a href="mailto:olayinka10172007@gmail.com?subject=Project%20enquiry" class="btn primary">✉️ Send me an email</a>
+          <a href="https://wa.me/2349064767251" class="btn ghost" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+        </div>
+        <div class="contact-list">
+          <div class="citem"><small>Email</small><a href="mailto:olayinka10172007@gmail.com">olayinka10172007@gmail.com</a></div>
+          <div class="citem"><small>Phone</small><a href="tel:+2349064767251">0906 476 7251</a></div>
+          <div class="citem"><small>Location</small><span>Nigeria · Available worldwide</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr"></span> Israel Olayinka. All rights reserved.</span>
+    <span>Developer · Editor · Creator · Designer</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 60);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // skill bars
+  const barIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = e.target.querySelector('i');
+        if (i) i.style.width = i.dataset.w;
+        barIo.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.bar').forEach(b => barIo.observe(b));
+
+  // card spotlight
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+</script>
+</body>
+</html>
