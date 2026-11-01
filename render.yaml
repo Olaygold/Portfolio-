@@ -1,0 +1,9 @@
+# Render Blueprint - deploy this repo as a Python web service
+services:
+  - type: web
+    name: portfolio-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    healthCheckPath: /get-links
